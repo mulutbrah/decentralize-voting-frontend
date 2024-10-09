@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Web3Modal from "web3modal";
-import { ethers } from "ethers";
+import { BrowserProvider } from "ethers";
 
 const WalletConnect: React.FC = () => {
-  const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
+  const [provider, setProvider] = useState<BrowserProvider | null>(null);
 
   const connectWallet = async () => {
     const web3Modal = new Web3Modal();
     const instance = await web3Modal.connect();
-    const ethersProvider = new ethers.BrowserProvider(instance);
+    const ethersProvider = new BrowserProvider(instance); // Use BrowserProvider in ethers v6
     setProvider(ethersProvider);
   };
 
